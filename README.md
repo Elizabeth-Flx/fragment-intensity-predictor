@@ -1,1 +1,1 @@
-# fragment_intensity-predictor
+# fragment-intensity-predictor

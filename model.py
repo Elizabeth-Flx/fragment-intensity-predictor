@@ -19,11 +19,8 @@ class Eval_Model:
 
         #* CNN layers
         self.cnn = layers.Conv1D(64, 3, activation='relu', padding='same') (self.embedding)
-        #self.cnn = layers.MaxPooling1D(2)                   (self.cnn)
         self.cnn = layers.Conv1D(64, 5, activation='relu', padding='same') (self.cnn)
-        #self.cnn = layers.MaxPooling1D(2)                   (self.cnn)
         self.cnn = layers.Conv1D(64, 7, activation='relu', padding='same') (self.cnn)
-        #self.cnn = layers.MaxPooling1D(2)                   (self.cnn)
 
         self.cnn_flatten = layers.Flatten()(self.cnn)
 
@@ -37,15 +34,12 @@ class Eval_Model:
 
         #* Dense layers
         self.dense  = layers.Dense(128, activation='relu')(self.concat)
-        #self.dense  = layers.Dense(64,  activation='relu')(self.dense)
         self.output = layers.Dense(56,  activation='sigmoid')(self.dense)
 
         self.model = Model([self.seq_input, self.pre_input], self.output)
 
         self.model.compile(
             optimizer = 'adam',
-            #loss = 'cosine_similarity',
-            #loss = 'mean_squared_error',
             loss = Eval_Model.spectral_angle_loss,
             metrics=[
                 'cosine_similarity',

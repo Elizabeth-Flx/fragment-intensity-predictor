@@ -62,8 +62,6 @@ class df:
             prod = 1
         return 1-2*(np.arccos(prod)/np.pi)
 
-        
-
     @staticmethod
     def generate_baseline(y):
         cos = []
